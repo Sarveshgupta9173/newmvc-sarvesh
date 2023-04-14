@@ -1,0 +1,32 @@
+<?php 
+$payments = $this->payments->getData();
+?>
+<table class="">
+	<tr>
+		<td><h3> MANAGE PAYMENTS</h3></td>
+		<td> <a href="<?php echo $url->getUrl('add','payment'); ?>" class="btn btn-primary ms-5">Add Payment</a> </td>
+	</tr>
+<table border="1" cellspacing="0" class=" table table-striped table-bordered">
+	<tr style="height: 30px; font-size: 18px;">
+		<th>payment_id</th>
+		<th>name</th>
+		<th>amount</th>
+		<th>status</th>
+		<th>created_at</th>
+		<th>updated_at</th>
+		<th>EDIT</th>
+		<th>DELETE</th>
+	</tr>
+	<?php foreach ($payments as $payment):?>
+	<tr class="center">
+		<td><?php echo $payment->payment_id; ?></td>
+		<td><?php echo $payment->name; ?></td>
+		<td><?php echo $payment->amount; ?></td>
+		<td><?php echo $payment->status; ?></td>
+		<td><?php echo $payment->created_at; ?></td>
+		<td><?php echo $payment->updated_at; ?></td>
+		<td><a href="<?php echo $url->getUrl('edit','payment',['id'=>$payment->payment_id]); ?>">Edit</td>
+		<td><a href="<?php echo $url->getUrl('delete','payment',['id'=>$payment->payment_id]); ?>">Delete</td>
+	</tr>
+	<?php endforeach;?>
+</table>

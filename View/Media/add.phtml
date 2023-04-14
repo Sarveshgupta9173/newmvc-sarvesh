@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Image</title>
+    <style type="text/css">
+        .btn{
+            padding: 7px;
+        }
+    </style>
+</head>
+<body>
+    <form action="Index.php?a=insert&c=media" method='POST' enctype='multipart/form-data'>
+        
+        <table border="1" width="40%" cellspacing="0" cellpadding="20" align="center">
+            <tr>
+                <td><h3>Add Image</h3></td>
+                <td> <button type="submit" class="btn btn-success"> Upload</button> </td>
+            </tr>
+            <tr>
+                <td>Upload your Image :</td>
+                <td><input type='file' name='my_img'></td>
+            </tr>
+            
+        </table>
+        
+    </form>
+</body>
+</html>

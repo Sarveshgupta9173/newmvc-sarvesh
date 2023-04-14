@@ -1,0 +1,45 @@
+<?php 
+$payment = $this->getData();
+?>
+<form action="<?php echo $url->getUrl('save','payment'); ?>" method="post">
+   <table class="tc">
+      <tr>
+         <td><h3>EDIT PAYMENT METHOD</h3></td>
+         <td>
+            <a href="<?php echo $url->getUrl('grid','payment'); ?>" class="btn btn-danger ms-5">Cancel </a>
+         </td>
+         <td>
+            <button type="submit" class="btn btn-success ms-2">UPDATE</button>
+         </td>
+      </tr>
+   </table>
+   <table border="1" cellspacing="0"  class="table table-striped table-bordered">
+      <tr>
+         <td class="tth"> payment method_id</td>
+         <td>
+            <input type="number" name="payment[payment_id]" placeholder="payment_id" value="<?php echo $payment->payment_id; ?>">
+         </td>
+      </tr>
+      <tr>
+         <td class="tth"> Name</td>
+         <td>
+            <input type="text" name="payment[name]" placeholder="name" value="<?php echo $payment->name; ?>">
+         </td>
+      </tr>
+      <tr>
+         <td class="tth"> Amount</td>
+         <td>
+            <input type="text" name="payment[amount]" placeholder="amount" value="<?php echo $payment->amount; ?>">
+         </td>
+      </tr>
+      <tr>
+         <td class="tth">STATUS</td>
+         <td>
+            <select name="payment[status]">
+               <option value="complete" <?php if($payment->status=="complete"){ echo "selected";} ?>>Complete</option>
+               <option value="pending" <?php if($payment->status=="pending"){ echo "selected";} ?>>Pending</option>
+            </select>
+         </td>
+      </tr>
+   </table>
+</form>

@@ -1,0 +1,49 @@
+<?php 
+
+$result = $this->medias->getData();
+ ?>
+ <!DOCTYPE html>
+ <html>
+ <head>
+ 	<meta charset="utf-8">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<title>View Image Lists</title>
+    <style type="text/css">
+        .arrow{
+            right: 200px;
+        }
+        .home{
+            float: right;
+            padding: 7px;
+        }
+    </style>
+ </head>
+ <body>
+    <h2>Your Selection List:</h2>
+    <a href="Index.php?a=grid&c=Media" class="btn btn-primary " >Edit Selections</a>
+    <a href="Index.php?a=grid&c=Product" class="btn btn-danger float-end ">Home</a>
+
+ 	<table border="1" width="100%" cellpadding="10" align="center" class="table">
+        <tr>
+            <th>Image</th>
+            <th>Media Id</th>
+            <th>Base</th>
+            <th>Thumb</th>
+            <th>Small</th>
+            <th>Gallery</th>
+        </tr>
+            <?php foreach ($result as $rows): ?>
+        <tr>
+            <td> <img src="View/Media/img_list/<?php echo $rows->img_url; ?>" height="120" width="150" > </td>
+            <td> <?php echo $rows->media_id; ?> </td>
+            <td> <input type="radio" name="base" <?php if($rows->base == "1"){ echo "checked";} ?> >  </td>
+            <td> <input type="radio" name="thumb" <?php if($rows->thumb == "1"){ echo "checked";} ?> > </td>
+            <td> <input type="radio" name="small" <?php if($rows->small == "1"){ echo "checked";} ?> > </td>
+            <td>
+                <input type="checkbox" name="gallery[]" <?php if($rows->gallery == "1"){ echo "checked";}?>>
+            </td>
+        </tr>
+            <?php endforeach; ?>
+        </table>
+ </body>
+ </html>

@@ -1,0 +1,91 @@
+<?php 
+
+$result = $this->getAdminData();
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		*{
+			padding: 5px;
+		}
+		.content{
+			border: 1px solid gray;
+			height: 500px;
+		}
+		.tc{
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.heading{
+			font-size: 25px;
+			font: bold;
+		}
+		.th{
+			width: 14%;
+		}
+		.header{
+			border: 1px solid gray;
+			height: 55px;
+		}
+		.footer{
+			border: 1px solid gray;
+			height: 50px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<?php require_once 'C:\xampp\htdocs\NewProject\View\html\header.phtml'?>
+
+	
+	<div class="content">
+			<div>
+				<table class="tc">
+					<tr>
+						<td class="heading"> MANAGE ADMINS</td>
+						<td> <button type="submit"> <a href="<?php echo $url->getUrl('add','admin'); ?>">Add Admin Details</a> </button> </td>
+					</tr>
+				</table>
+			</div>
+			<br>
+			<table border="1" cellspacing="0" class="tc">
+				<tr style="height: 30px; font-size: 18px;">
+					<th>admin_id</th>
+					<th>name</th>
+					<th>email</th>
+					<th>status</th>
+					<th>created_at</th>
+					<th>updated_at</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+
+				<?php 
+				foreach ($result as $admin):
+					?>
+					<tr class="center">
+						<td><?php echo $admin['admin_id']; ?></td>
+						<td><?php echo $admin['name']; ?></td>
+						<td><?php echo $admin['email']; ?></td>
+						<td><?php echo $admin['status']; ?></td>
+						<td><?php echo $admin['created_at']; ?></td>
+						<td><?php echo $admin['updated_at']; ?></td>
+						<td><a href="<?php echo $url->getUrl('edit','admin',['id'=>$admin['admin_id']]); ?>">Edit</td>
+						<td><a href="<?php echo $url->getUrl('delete','admin',['id'=>$admin['admin_id']]);?>">Delete</td>
+					</tr>
+						<?php 
+						endforeach;
+						?>
+					</table>
+			</div>
+	<?php require_once 'C:\xampp\htdocs\NewProject\View\html\footer.phtml'?>
+			
+
+		</body>
+		</html>

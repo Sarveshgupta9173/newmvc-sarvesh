@@ -1,0 +1,40 @@
+<?php 
+$result = $this->shippings->getData();
+?>
+<div>
+	<table class="tc">
+		<tr>
+			<td class="heading"><h3> MANAGE SHIPPING</h3></td>
+			<td> <a href="<?php echo $url->getUrl('add','shipping'); ?>" class="btn btn-primary ms-5">Add Shipping Details</a></td>
+		</tr>
+	</table>
+</div>
+<table border="1" cellspacing="0" class="tc table table-striped table-bordered">
+	<tr style="height: 30px; font-size: 18px;">
+		<th>shipping method_id</th>
+		<th>name</th>
+		<th>amount</th>
+		<th>status</th>
+		<th>created_at</th>
+		<th>updated_at</th>
+		<th>EDIT</th>
+		<th>DELETE</th>
+	</tr>
+
+	<?php 
+	foreach ($result as $shipping):
+		?>
+		<tr class="center">
+			<td><?php echo $shipping->shipping_id; ?></td>
+			<td><?php echo $shipping->name; ?></td>
+			<td><?php echo $shipping->amount; ?></td>
+			<td><?php echo $shipping->status; ?></td>
+			<td><?php echo $shipping->created_at; ?></td>
+			<td><?php echo $shipping->updated_at; ?></td>
+			<td><a href="<?php echo $url->getUrl('edit','shipping',['id'=>$shipping->shipping_id]); ?>">Edit</td>
+			<td><a href="<?php echo $url->getUrl('delete','shipping',['id'=>$shipping->shipping_id]);?>">Delete</td>
+		</tr>
+			<?php 
+			endforeach;
+			?>
+	</table>

@@ -1,0 +1,65 @@
+<?php 
+
+// require_once 'Model/Sprice.php';
+// $sprice = new Model_Sprice();
+
+// $request = $this->getRequest();
+
+// $id = $request->getParams("id","key doesn't exists");
+
+// $sql = "SELECT * FROM `salesman_price` WHERE `sales_id`= '{$id}' ";
+// $result = $sprice->getAdapter()->fetchAll($sql);
+$products = $this->getProducts();
+$names = $this->getName();
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Salesman Price</title>
+	<style type="text/css">
+		.btn{
+			float: right;
+		}
+		.table{
+			margin-top: 15px;
+		}
+	</style>
+</head>
+<body>
+	<div>
+	<form method="POST" action="">
+	<button type="submit" class="btn">UPDATE</button>
+	<select>
+		<?php foreach($names as $name ) : ?>
+		<option>
+			<?php print_r($name['fname']); ?>
+		</option>
+		  <?php endforeach;  ?>
+	</select>
+	<br>  
+	<table border="1" width="80%" cellspacing="0" class="table">
+		<tr>
+			<th>Product Id</th>
+			<th>Name</th>
+			<th>Cost</th>
+			<th>Salesman Price</th>
+			<th>Delete</th>
+		</tr>
+		<?php foreach($products as $row):?>
+		<tr>
+			<td> <?php echo $row['product_id']; ?></td>
+			<td> <?php echo $row['name']; ?></td>
+			<td> <?php echo $row['cost']; ?></td>
+			<td> <input type="number" value=""></td>
+			<td><a href="">Delete</a> </td>
+		</tr>
+		<?php endforeach; ?>
+	</table>
+	</form>
+	</div>
+</body>
+</html>
