@@ -1,12 +1,12 @@
 <form action="<?php echo $url->getUrl('insert','vendor'); ?>" method="post">
 	<table class="tc">
 		<tr>
-			<td class="heading"> VENDOR</td>
+			<td ><h3> VENDOR</h3></td>
 			<td>
-				<a href="<?php echo $url->getUrl('grid','vendor'); ?>">Cancel </a>
+				<a href="<?php echo $url->getUrl('grid','vendor'); ?>" class="btn btn-danger ms-5">Cancel </a>
 			</td>
 			<td>
-				<button type="submit">SUBMIT</button>
+				<button type="submit" class="btn btn-success ms-2">SUBMIT</button>
 			</td>
 		</tr>
 	</table>
@@ -56,10 +56,10 @@
 		<tr>
 			<th colspan="2">Address</th>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<td>Address Id</td>
 			<td><input type="text" name="vendor[vendor_id]" placeholder="vendor_id"></td>
-		</tr>
+		</tr> -->
 		<tr>
 			<td>Address </td>
 			<td><input type="text" name="address[address]" placeholder="Address"></td>

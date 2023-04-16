@@ -4,8 +4,8 @@ class Controller_Shipping extends Controller_Core_Action
 {
 	public function addAction(){
 
-		$layout = new Block_Core_Layout();
-		$add = new Block_Shipping_Add();
+		$layout = $this->getLayout();
+		$add = $this->createBlock('Shipping_Add');
 		$layout->getchild('content')->addChild('add',$add);
 		$layout->render();
 	}
@@ -17,7 +17,7 @@ class Controller_Shipping extends Controller_Core_Action
 		Ccc::register('shippings',$shippings);
 		
 		$layout = $this->getLayout();
-		$edit = new Block_Shipping_Edit();
+		$edit = $this->createBlock('Shipping_Edit');
 		$children = $layout->getChild('content')->addChild('edit',$edit);
 		$layout->render();
 
@@ -29,7 +29,7 @@ class Controller_Shipping extends Controller_Core_Action
 		Ccc::register('shippings',$shippings);
 
 		$layout = $this->getLayout();
-		$grid = new Block_Shipping_Grid();
+		$grid = $this->createBlock('Shipping_Grid');
 		$children = $layout->getChild('content')->addChild('grid',$grid);
 		$layout->render();
 	}

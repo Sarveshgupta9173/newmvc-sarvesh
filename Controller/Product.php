@@ -4,7 +4,7 @@ class Controller_Product extends Controller_Core_Action
 {
 
 	public function addAction(){
-		$add = new Block_Product_Add();
+		$add = $this->createBlock('Product_Add');
 		$layout = $this->getLayout();
 		$layout->getChild('content')->addChild('add',$add);
 		$layout->render();
@@ -16,7 +16,7 @@ class Controller_Product extends Controller_Core_Action
 		$products = Ccc::getModel('Product')->load($id);
 		Ccc::register('products',$products);
 
-		$edit = new Block_Product_Edit();
+		$edit = $this->createBlock('Product_Edit');
 		$layout = $this->getLayout();
 		$layout->getChild('content')->addChild('edit',$edit);
 		$layout->render();
@@ -31,8 +31,8 @@ class Controller_Product extends Controller_Core_Action
 		}
 		Ccc::register('products',$products);
 		
-		$grid = new Block_Product_Grid();
 		$layout = $this->getLayout();
+		$grid = $this->createBlock('Product_Grid');
 		$layout->getChild('content')->addChild('grid',$grid);
 		$layout->render();
 	

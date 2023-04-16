@@ -129,7 +129,6 @@ class Model_Core_Table
 	public function fetchAll($query){
 
 		$resourceClass = $this->getResourceClass();
-		// $sql = "SELECT * FROM `{$this->getTableName()}` ";
 		$result = $resourceClass->fetchAll($query);
 		 if (!$result) {
             return false;

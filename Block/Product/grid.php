@@ -6,7 +6,6 @@ class Block_Product_Grid extends Block_Core_Template
 	{
 		parent::__construct();
 		$this->setTemplate('Product/grid.phtml');
-		$this->getCollection();
 	}
 
 	public function getCollection()

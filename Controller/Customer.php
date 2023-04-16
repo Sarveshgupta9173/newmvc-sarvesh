@@ -4,7 +4,7 @@ class Controller_Customer extends Controller_Core_Action
 {
 	public function addAction(){
 
-		$add = new Block_Customer_Add();
+		$add = $this->createBlock('Customer_Add');
 		$layout = $this->getLayout();
 		$layout->getChild('content')->addChild('add',$add);
 		$layout->render();
@@ -19,7 +19,7 @@ class Controller_Customer extends Controller_Core_Action
 
 		Ccc::register('customers',$customers);
 
-		$edit = new Block_Customer_Edit();
+		$edit = $this->createBlock('Customer_Edit');
 		$layout = $this->getLayout();
 		$layout->getChild('content')->addChild('edit',$edit);
 		$layout->render();
@@ -31,7 +31,7 @@ class Controller_Customer extends Controller_Core_Action
 		$customers = Ccc::getModel('Customer')->fetchAll($sql);
 		Ccc::register('customers',$customers);
 
-		$grid = new Block_Customer_Grid();
+		$grid = $this->createBlock('Customer_Grid');
 		$layout = $this->getLayout();
 		$layout->getChild('content')->addChild('grid',$grid);
 		$layout->render();
