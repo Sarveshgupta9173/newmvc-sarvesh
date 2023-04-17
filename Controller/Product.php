@@ -23,7 +23,6 @@ class Controller_Product extends Controller_Core_Action
 	}
 
 	public function gridAction(){
-	
 		$sql = "SELECT * FROM `product`";
 		$products = Ccc::getModel('Product')->fetchAll($sql);
 		if(!$products){
@@ -64,7 +63,7 @@ class Controller_Product extends Controller_Core_Action
 	public function saveAction()
 	{
 		
-
+			die;
 		try {
 			$request = $this->getRequest();
 			$message = new Model_Core_Message();
