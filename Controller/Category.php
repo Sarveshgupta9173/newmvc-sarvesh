@@ -25,7 +25,7 @@ class Controller_Category extends Controller_Core_Action
 	}
 
 	public function gridAction(){
-
+		
 		$sql = "SELECT * FROM `category`";
 		$category = Ccc::getModel('Category')->fetchAll($sql);
 		Ccc::register('category',$category);

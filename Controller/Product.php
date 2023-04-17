@@ -23,13 +23,12 @@ class Controller_Product extends Controller_Core_Action
 	}
 
 	public function gridAction(){
-	
+		echo "111";die;
 		$sql = "SELECT * FROM `product`";
 		$products = Ccc::getModel('Product')->fetchAll($sql);
 		if(!$products){
 			throw new Exception("No data found", 1);
 		}
-		Ccc::register('products',$products);
 		
 		$layout = $this->getLayout();
 		$grid = $this->createBlock('Product_Grid');

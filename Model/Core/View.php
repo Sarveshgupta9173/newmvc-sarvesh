@@ -40,6 +40,12 @@ class Model_Core_View
 		require "View".DS.$this->getTemplate();
 	}
 
+	public function getUrl($a = Null, $c = Null, $params = [], $resetParams = false)
+	{
+		$url = Ccc::getModel('Core_Url');
+		return $url->getUrl($a,$c,$params,$resetParams);
+	}
+
 	public function __set($key,$value)
 	{
 		$this->data = $value;

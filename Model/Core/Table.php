@@ -13,6 +13,18 @@ class Model_Core_Table
 
 	}
 
+	public function setId($id)
+	{
+		$this->data[$this->getResource()->getPrimaryKey()] = (int) $id;
+		return $this;
+	}
+
+	public function getId()
+	{
+		$primaryKey = $this->getResource()->getPrimaryKey();
+		return $this->$primaryKey;
+	}
+
 	public function setResource($resource)
 	{
 		$this->resource = $resource;
