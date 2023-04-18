@@ -4,8 +4,8 @@ class Controller_Vendor extends Controller_Core_Action
 {
 
 	public function addAction(){
-		$add = $this->createBlock('Vendor_Add');
 		$layout = $this->getLayout();
+		$add = $layout->createBlock('Vendor_Add');
 		$layout->getChild('content')->addChild('add',$add);
 		$layout->render();
 	}
@@ -19,8 +19,8 @@ class Controller_Vendor extends Controller_Core_Action
 		$data = Ccc::getModel('Vendor')->fetchRow($sql);
 		Ccc::register('vendor',$data);
 
-		$edit = $this->createBlock('Vendor_Edit')
 		$layout = $this->getLayout();
+		$edit = $layout->createBlock('Vendor_Edit');
 		$layout->getChild('content')->addChild('edit',$edit);
 		$layout->render();
 	}
@@ -31,8 +31,8 @@ class Controller_Vendor extends Controller_Core_Action
 		$vendors = Ccc::getModel('Vendor')->fetchAll($sql);
 		Ccc::register('vendors',$vendors);
 		
-		$grid = $this->createBlock('Vendor_Grid');
 		$layout = $this->getLayout();
+		$grid = $layout->createBlock('Vendor_Grid');
 		$layout->getChild('content')->addChild('grid',$grid);
 		$layout->render();
 	}

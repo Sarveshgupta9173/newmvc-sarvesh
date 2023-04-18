@@ -9,16 +9,16 @@ class Controller_Salesman extends Controller_Core_Action
 		$salesman = Ccc::getModel('Salesman')->fetchAll($sql);
 		Ccc::register('salesman',$salesman);
 
-		$grid = $this->createBlock('Salesman_Grid');
 		$layout = $this->getLayout();
+		$grid = $layout->createBlock('Salesman_Grid');
 		$layout->getChild('content')->addChild('grid',$grid);
 		$layout->render();
 	}
 
 	public function addAction(){
 
-		$add = $this->createBlock('Salesman_Add');
 		$layout = $this->getLayout();
+		$add = $layout->createBlock('Salesman_Add');
 		$layout->getChild('content')->addChild('add',$add);
 		$layout->render();
 	}
@@ -32,8 +32,8 @@ class Controller_Salesman extends Controller_Core_Action
 		$salesman = Ccc::getModel('Salesman')->load($id);
 		Ccc::register('salesman',$salesman);
 		
-		$edit = $this->createBlock('Salesman_Edit');
 		$layout = $this->getLayout();
+		$edit = $layout->createBlock('Salesman_Edit');
 		$layout->getChild('content')->addChild('edit',$edit);
 		$layout->render();
 

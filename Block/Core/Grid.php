@@ -5,12 +5,12 @@ class Block_Core_Grid extends Block_Core_Template
 	protected $_columns = [];
 	protected $_actions = [];
 	protected $_buttons = [];
-	protected $_title = Null;
+	protected $_title = null;
 	
 	function __construct()
 	{
 		parent::__construct();
-		$this->setTemplate('core/grid.phtml');
+		$this->setTemplate('Core/grid.phtml');
 		$this->_prepareColumns();
 		$this->_prepareActions();
 		$this->_prepareButtons();
@@ -90,12 +90,12 @@ class Block_Core_Grid extends Block_Core_Template
 
 	public function getEditUrl($row, $key)
 	{
-		return $this->getUrl($key,Null,['id'=>$row->getId()]);
+		return $this->getUrl($key,null,['id'=>$row->getId()]);
 	}
 
 	public function getDeleteUrl($row, $key)
 	{
-		return $this->getUrl($key,Null,['id'=>$row->getId()]);
+		return $this->getUrl($key,null,['id'=>$row->getId()]);
 	}
 
 	public function getMediaUrl($row, $key)

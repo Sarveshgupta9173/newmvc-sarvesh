@@ -9,7 +9,6 @@ class Controller_Core_Front extends Controller_Core_Action
 		$controller = ucwords($request->getControllerName());
 		$file = str_replace('_','/',$controller);
 
-		require_once 'C:/xampp/htdocs/newProject/Controller/'.$file.'.php';
 		$ca = 'Controller_'.$controller;
 		$commonobject = new $ca;
 		if(!method_exists($commonobject, $action)){

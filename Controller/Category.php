@@ -3,8 +3,8 @@
 class Controller_Category extends Controller_Core_Action
 {	
 	public function addAction(){
-		$add = $this->createBlock('Category_Add');
 		$layout = $this->getLayout();
+		$add = $layout->createBlock('Category_Add');
 		$layout->getChild('content')->addChild('add',$add);
 		$layout->render();
 	}
@@ -17,8 +17,8 @@ class Controller_Category extends Controller_Core_Action
 		$data = Ccc::getModel('Category')->fetchRow($sql);
 		Ccc::register('category',$data);
 
-		$edit = $this->createBlock('Category_Edit');
 		$layout = $this->getLayout();
+		$edit = $layout->createBlock('Category_Edit');
 		$layout->getChild('content')->addChild('edit',$edit);
 		$layout->render();
 		
@@ -30,8 +30,8 @@ class Controller_Category extends Controller_Core_Action
 		$category = Ccc::getModel('Category')->fetchAll($sql);
 		Ccc::register('category',$category);
 
-		$grid = $this->createBlock('Category_Grid');
 		$layout = $this->getLayout();
+		$grid = $layout->createBlock('Category_Grid');
 		$layout->getChild('content')->addChild('grid',$grid);
 		$layout->render();
 

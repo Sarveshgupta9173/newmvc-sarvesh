@@ -5,8 +5,8 @@ class Controller_Payment extends Controller_Core_Action
 
 	public function addAction(){
 
-		$add = $this->createBlock('Payment_Add');
 		$layout = $this->getLayout();
+		$add = $layout->createBlock('Payment_Add');
 		$layout->getChild('content')->addChild('add',$add);
 		$layout->render();
 	} 
@@ -17,8 +17,8 @@ class Controller_Payment extends Controller_Core_Action
 		$payments = Ccc::getModel('Payment')->load($id);
 		$payments = Ccc::register('payments',$payments);
 
-		$edit = $this->createBlock('Payment_Edit');
 		$layout = $this->getLayout();
+		$edit = $layout->createBlock('Payment_Edit');
 		$layout->getChild('content')->addChild('edit',$edit);
 		$layout->render();
 	} 
@@ -33,8 +33,8 @@ class Controller_Payment extends Controller_Core_Action
 
 		Ccc::register('payments', $payments);
 
-		$grid = $this->createBlock('Payment_Grid');
 		$layout = $this->getLayout();
+		$grid = $layout->createBlock('Payment_Grid');
 		$layout->getChild('content')->addChild('grid',$grid);
 		$layout->render();
 	} 
