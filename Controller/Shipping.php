@@ -3,10 +3,11 @@
 class Controller_Shipping extends Controller_Core_Action
 {
 	public function addAction(){
-
+		$shipping = Ccc::getModel('Shipping');
+		Ccc::register('shippings',$shipping);
 		$layout = $this->getLayout();
-		$add = $layout->createBlock('Shipping_Add');
-		$layout->getchild('content')->addChild('add',$add);
+		$edit = $layout->createBlock('Shipping_Edit');
+		$layout->getchild('content')->addChild('edit',$edit);
 		$layout->render();
 	}
 

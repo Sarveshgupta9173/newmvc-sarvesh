@@ -5,8 +5,8 @@ class Controller_Customer extends Controller_Core_Action
 	public function addAction(){
 
 		$customer = Ccc::getModel('Customer');
-
 		Ccc::register('customer',$customer);
+		
 		$layout = $this->getLayout();
 		$edit = $layout->createBlock('Customer_Edit');
 		$layout->getChild('content')->addChild('edit',$edit);

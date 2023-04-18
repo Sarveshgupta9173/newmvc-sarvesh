@@ -3,9 +3,12 @@
 class Controller_Category extends Controller_Core_Action
 {	
 	public function addAction(){
+		$category = Ccc::getModel('Category');
+		Ccc::register('category',$category);
+
 		$layout = $this->getLayout();
-		$add = $layout->createBlock('Category_Add');
-		$layout->getChild('content')->addChild('add',$add);
+		$edit = $layout->createBlock('Category_Edit');
+		$layout->getChild('content')->addChild('edit',$edit);
 		$layout->render();
 	}
 

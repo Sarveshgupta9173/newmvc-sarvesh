@@ -4,9 +4,12 @@ class Controller_Vendor extends Controller_Core_Action
 {
 
 	public function addAction(){
+		$vendor = Ccc::getModel('Vendor');
+		Ccc::register('vendor',$vendor);
+
 		$layout = $this->getLayout();
-		$add = $layout->createBlock('Vendor_Add');
-		$layout->getChild('content')->addChild('add',$add);
+		$edit = $layout->createBlock('Vendor_Edit');
+		$layout->getChild('content')->addChild('edit',$edit);
 		$layout->render();
 	}
 

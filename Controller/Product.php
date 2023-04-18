@@ -2,11 +2,13 @@
 
 class Controller_Product extends Controller_Core_Action
 {
-
 	public function addAction(){
+		$products = Ccc::getModel('Product');
+		Ccc::register('products',$products);
+
 		$layout = $this->getLayout();
-		$add = $layout->createBlock('Product_Add');
-		$layout->getChild('content')->addChild('add',$add);
+		$edit = $layout->createBlock('Product_Edit');
+		$layout->getChild('content')->addChild('edit',$edit);
 		$layout->render();
 	}
 

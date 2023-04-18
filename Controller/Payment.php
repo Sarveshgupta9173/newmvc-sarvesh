@@ -4,10 +4,11 @@ class Controller_Payment extends Controller_Core_Action
 {	
 
 	public function addAction(){
-
+		$payment = Ccc::getModel('Payment');
+		Ccc::register('payments',$payment);
 		$layout = $this->getLayout();
-		$add = $layout->createBlock('Payment_Add');
-		$layout->getChild('content')->addChild('add',$add);
+		$edit = $layout->createBlock('Payment_Edit');
+		$layout->getChild('content')->addChild('edit',$edit);
 		$layout->render();
 	} 
 

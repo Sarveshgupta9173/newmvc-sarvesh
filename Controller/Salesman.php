@@ -16,10 +16,12 @@ class Controller_Salesman extends Controller_Core_Action
 	}
 
 	public function addAction(){
+		$salesman = Ccc::getModel('Salesman');
+		Ccc::register('salesman',$salesman);
 
 		$layout = $this->getLayout();
-		$add = $layout->createBlock('Salesman_Add');
-		$layout->getChild('content')->addChild('add',$add);
+		$edit = $layout->createBlock('Salesman_Edit');
+		$layout->getChild('content')->addChild('edit',$edit);
 		$layout->render();
 	}
 
