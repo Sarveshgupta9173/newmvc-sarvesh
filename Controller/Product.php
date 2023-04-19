@@ -64,7 +64,7 @@ class Controller_Product extends Controller_Core_Action
 	public function saveAction()
 	{
 		
-
+			die;
 		try {
 			$request = $this->getRequest();
 			$message = new Model_Core_Message();
