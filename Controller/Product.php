@@ -17,7 +17,7 @@ class Controller_Product extends Controller_Core_Action
 		$id = (int) $this->getRequest()->getParams("id");
 		$products = Ccc::getModel('Product')->load($id);
 		Ccc::register('products',$products);
-
+		$edit = new Block_Product_Edit();
 		$layout = $this->getLayout();
 		$edit = $layout->createBlock('Product_Edit');
 		$layout->getChild('content')->addChild('edit',$edit);

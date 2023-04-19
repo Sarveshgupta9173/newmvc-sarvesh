@@ -15,6 +15,7 @@ class Controller_Customer extends Controller_Core_Action
 
 	public function editAction(){
 		$request = $this->getRequest();
+		
 		$id = $request->getParams("id");
 
 		$sql = "SELECT * FROM `customer` INNER JOIN  `customer_address` ON `customer`.`customer_id` = `customer_address`.`customer_id` WHERE `customer`.`customer_id` = '{$id}' ";
