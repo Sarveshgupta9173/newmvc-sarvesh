@@ -4,9 +4,12 @@ class Controller_Customer extends Controller_Core_Action
 {
 	public function addAction(){
 
-		$add = new Block_Customer_Add();
+		$customer = Ccc::getModel('Customer');
+		Ccc::register('customer',$customer);
+		
 		$layout = $this->getLayout();
-		$layout->getChild('content')->addChild('add',$add);
+		$edit = $layout->createBlock('Customer_Edit');
+		$layout->getChild('content')->addChild('edit',$edit);
 		$layout->render();
 	}
 
@@ -18,10 +21,10 @@ class Controller_Customer extends Controller_Core_Action
 		$sql = "SELECT * FROM `customer` INNER JOIN  `customer_address` ON `customer`.`customer_id` = `customer_address`.`customer_id` WHERE `customer`.`customer_id` = '{$id}' ";
 		$customers = Ccc::getModel('Customer')->fetchRow($sql);
 
-		Ccc::register('customers',$customers);
+		Ccc::register('customer',$customers);
 
-		$edit = new Block_Customer_Edit();
 		$layout = $this->getLayout();
+		$edit = $layout->createBlock('Customer_Edit');
 		$layout->getChild('content')->addChild('edit',$edit);
 		$layout->render();
 		
@@ -32,8 +35,8 @@ class Controller_Customer extends Controller_Core_Action
 		$customers = Ccc::getModel('Customer')->fetchAll($sql);
 		Ccc::register('customers',$customers);
 
-		$grid = new Block_Customer_Grid();
 		$layout = $this->getLayout();
+		$grid = $layout->createBlock('Customer_Grid');
 		$layout->getChild('content')->addChild('grid',$grid);
 		$layout->render();
 	}

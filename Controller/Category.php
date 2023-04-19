@@ -3,9 +3,12 @@
 class Controller_Category extends Controller_Core_Action
 {	
 	public function addAction(){
-		$add = new Block_Category_Add();
+		$category = Ccc::getModel('Category');
+		Ccc::register('category',$category);
+
 		$layout = $this->getLayout();
-		$layout->getChild('content')->addChild('add',$add);
+		$edit = $layout->createBlock('Category_Edit');
+		$layout->getChild('content')->addChild('edit',$edit);
 		$layout->render();
 	}
 
@@ -17,21 +20,21 @@ class Controller_Category extends Controller_Core_Action
 		$data = Ccc::getModel('Category')->fetchRow($sql);
 		Ccc::register('category',$data);
 
-		$edit = new Block_Category_Edit();
 		$layout = $this->getLayout();
+		$edit = $layout->createBlock('Category_Edit');
 		$layout->getChild('content')->addChild('edit',$edit);
 		$layout->render();
 		
 	}
 
 	public function gridAction(){
-
+		
 		$sql = "SELECT * FROM `category`";
 		$category = Ccc::getModel('Category')->fetchAll($sql);
 		Ccc::register('category',$category);
 
-		$grid = new Block_Category_Grid();
 		$layout = $this->getLayout();
+		$grid = $layout->createBlock('Category_Grid');
 		$layout->getChild('content')->addChild('grid',$grid);
 		$layout->render();
 

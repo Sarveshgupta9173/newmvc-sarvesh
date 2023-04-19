@@ -2,11 +2,13 @@
 
 class Controller_Product extends Controller_Core_Action
 {
-
 	public function addAction(){
-		$add = new Block_Product_Add();
+		$products = Ccc::getModel('Product');
+		Ccc::register('products',$products);
+
 		$layout = $this->getLayout();
-		$layout->getChild('content')->addChild('add',$add);
+		$edit = $layout->createBlock('Product_Edit');
+		$layout->getChild('content')->addChild('edit',$edit);
 		$layout->render();
 	}
 
@@ -17,21 +19,20 @@ class Controller_Product extends Controller_Core_Action
 		Ccc::register('products',$products);
 		$edit = new Block_Product_Edit();
 		$layout = $this->getLayout();
+		$edit = $layout->createBlock('Product_Edit');
 		$layout->getChild('content')->addChild('edit',$edit);
 		$layout->render();
 	}
 
 	public function gridAction(){
-	
 		$sql = "SELECT * FROM `product`";
 		$products = Ccc::getModel('Product')->fetchAll($sql);
 		if(!$products){
 			throw new Exception("No data found", 1);
 		}
-		Ccc::register('products',$products);
 		
-		$grid = new Block_Product_Grid();
 		$layout = $this->getLayout();
+		$grid = $layout->createBlock('Product_Grid');
 		$layout->getChild('content')->addChild('grid',$grid);
 		$layout->render();
 	
@@ -69,9 +70,9 @@ class Controller_Product extends Controller_Core_Action
 			$message = new Model_Core_Message();
 
 			$data = $request->getPost("product");
+			$product = Ccc::getModel('Product');                         			
 			
 			if($request->getParams("id")){  		   //update
-			$product = Ccc::getModel('Product');                         			//insert
 			$product->data = $data;
 			$product->save();
 
@@ -80,8 +81,7 @@ class Controller_Product extends Controller_Core_Action
 			}
 
 			else{    
-				$product = Ccc::getModel('Product');                         			//insert
-				$product->data = $data;
+				$product->data = $data;					//insert
 				$product->save();
 
 				$message->addMessage('Inserted  successfully',Model_Core_Message::SUCCESS);

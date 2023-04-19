@@ -1,8 +1,6 @@
 <?php 
-//maru
 $attribute = $this->attribute;
 $options = $this->options;
-
 ?>
 
 <form action="<?php echo $url->getUrl('save') ?>" method="post" class="p-3 border border-dark">
@@ -81,7 +79,6 @@ $options = $this->options;
 	<div style="border: 1px solid red; display: none;margin: 10px 5px;" id="inputTypeOptionDiv">
 		<table border="1">
 			<thead>
-				
 			<tr>
 				<th>&nbsp;</th>
 				<th><input type="button" name="add" value="ADD" id="addOption"></th>
@@ -126,7 +123,6 @@ $options = $this->options;
 			}
 			else{
 				$('#inputTypeOptionDiv').hide();
-
 			}
 	});
 

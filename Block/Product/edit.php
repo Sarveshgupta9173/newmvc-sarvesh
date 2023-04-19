@@ -6,12 +6,11 @@ class Block_Product_Edit extends Block_Core_Template
 	{
 		parent::__construct();
 		$this->setTemplate('Product/edit.phtml');
-		$this->getCollection();
 	}
 
 	public function getCollection()
 	{
-		$products = Ccc::getRegistry('products');	
+		$products = Ccc::getRegistry('products');
 		$this->setData($products);
 		return $this;
 	}
