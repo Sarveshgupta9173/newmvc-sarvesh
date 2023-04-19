@@ -76,11 +76,9 @@ class Controller_Admin extends Controller_Core_Action
 
 	public function saveAction()
 	{
-		
-
 		try {
 			$request = $this->getRequest();
-			$message = new Model_Core_Message();
+			$message = Ccc::getModel('Core_Message');
 
 			$data = $request->getPost("admin");
 			
@@ -110,42 +108,6 @@ class Controller_Admin extends Controller_Core_Action
 		$this->redirect('grid','admin',null,true);
 	}
 
-	public function insertAction()
-	{
-		try {
-			$request = $this->getRequest();
-			$request->isPost();
-
-			$adminData = $request->getPost('admin');
-			$this->getModelRow()->products = $adminData;
-			$id = $this->getModelRow()->admin_id;
-			$this->getModelRow()->load($id);
-			$this->getModelRow()->save();
-
-			$this->redirect('grid','admin',null,true);
-
-		} catch (Exception $e) {
-			
-		}
-	}
-
-	public function updateAction()
-	{
-		try {
-			$request = $this->getRequest();
-			$request->isPost();
-			echo "<pre>";
-			$adminData = $request->getPost('admin');
-			$this->getModelRow()->products = $adminData;
-			$this->getModelRow()->save();
-
-			$this->redirect('grid','admin',null,true);
-
-		} catch (Exception $e) {
-			
-		}
-	}
-
 	public function deleteAction()
 	{
 		try {
@@ -159,7 +121,6 @@ class Controller_Admin extends Controller_Core_Action
 
 		} catch (Exception $e) {
 			$message->addMessage('Not deleted ',Model_Core_Message::FAILURE);
-			
 		}
 	
 		$this->redirect('grid','admin',null,true);

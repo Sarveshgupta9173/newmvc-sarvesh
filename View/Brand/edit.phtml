@@ -1,0 +1,40 @@
+<?php 
+$brand = $this->getData();
+?>
+<form action="<?php echo $url->getUrl('save','brand'); ?>" method="post">
+   <table class="tc">
+      <tr>
+         <td><h3>SAVE BRAND</h3></td>
+        
+         <td>
+            <button type="submit" class="btn btn-success ms-2">Save</button>
+         </td>
+      </tr>
+   </table>
+   <table border="1" cellspacing="0"  class="table table-striped table-bordered">
+      <tr>
+         <td class="tth"> payment method_id</td>
+         <td>
+            <input type="number" name="brand[brand_id]" placeholder="Brand_id" value="<?php echo $brand->brand_id; ?>">
+         </td>
+      </tr>
+      <tr>
+         <td class="tth"> Name</td>
+         <td>
+            <input type="text" name="brand[name]" placeholder="Name" value="<?php echo $brand->name; ?>">
+         </td>
+      </tr>
+      <tr>
+         <td class="tth"> Description</td>
+         <td>
+            <input type="text" name="brand[description]" placeholder="Description" value="<?php echo $brand->description; ?>">
+         </td>
+      </tr>
+     <tr>
+         <td class="tth"> Image</td>
+         <td>
+            <input type="text" name="brand[image]" placeholder="Image" value="<?php echo $brand->description; ?>">
+         </td>
+      </tr>
+   </table>
+</form>

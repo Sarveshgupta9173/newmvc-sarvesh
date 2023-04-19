@@ -1,0 +1,32 @@
+<?php 
+$brands = $this->brands->getData();
+?>
+<table class="">
+	<tr>
+		<td><h3> MANAGE BRANDS</h3></td>
+		<td> <a href="<?php echo $url->getUrl('add','brand'); ?>" class="btn btn-primary ms-5">Add Brand</a> </td>
+	</tr>
+<table border="1" cellspacing="0" class=" table table-striped table-bordered">
+	<tr style="height: 30px; font-size: 18px;">
+		<th>Brand_id</th>
+		<th>name</th>
+		<th>Description</th>
+		<th>image</th>
+		<th>created_at</th>
+		<th>updated_at</th>
+		<th>EDIT</th>
+		<th>DELETE</th>
+	</tr>
+	<?php foreach ($brands as $brand):?>
+	<tr class="center">
+		<td><?php echo $brand->brand_id; ?></td>
+		<td><?php echo $brand->name; ?></td>
+		<td><?php echo $brand->description; ?></td>
+		<td><?php echo $brand->image; ?></td>
+		<td><?php echo $brand->created_at; ?></td>
+		<td><?php echo $brand->updated_at; ?></td>
+		<td><a href="<?php echo $url->getUrl('edit','brand',['id'=>$brand->brand_id]); ?>">Edit</td>
+		<td><a href="<?php echo $url->getUrl('delete','brand',['id'=>$brand->brand_id]); ?>">Delete</td>
+	</tr>
+	<?php endforeach;?>
+</table>

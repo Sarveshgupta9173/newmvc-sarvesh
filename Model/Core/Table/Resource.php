@@ -77,7 +77,6 @@ class Model_Core_Table_Resource
         $valueString = implode("','", $values);
 
         $sql = "INSERT INTO `{$this->getTableName()}` (`{$keyString}`,`created_at`) VALUES ('{$valueString}','{$createdAt}')";
-        // echo $sql;die;
 		 $insertId = $this->getAdapter()->insert($sql);
 		 return $insertId;
 		 	
