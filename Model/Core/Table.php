@@ -41,7 +41,7 @@ class Model_Core_Table
 		return $resource;
 	}
 
-		public function setCollection($collection)
+	public function setCollection($collection)
 	{
 		$this->collection = $collection;
 		return $this;

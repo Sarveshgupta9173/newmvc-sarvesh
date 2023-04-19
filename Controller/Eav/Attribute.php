@@ -4,6 +4,7 @@ class Controller_Eav_Attribute extends Controller_Core_Action
 {
 	public function gridAction()
 	{
+		
 		$grid = new Block_Eav_Attribute_Grid();
 		$layout = $this->getLayout();
 		$layout->getChild('content')->addChild('grid',$grid);
