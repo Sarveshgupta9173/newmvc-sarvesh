@@ -1,6 +1,5 @@
-<?php 
-$result = $this->products->getData();
-
+<!-- <?php 
+	$result = $this->getCollection();
 ?>
 weljotl;skjf
 <div>
@@ -27,7 +26,7 @@ weljotl;skjf
 		<th>DELETE</th>
 	</tr>
 
-	<?php foreach($result as $row): ?>
+	<?php foreach($result->getData() as $row): ?>
 		<tr class="center">
 			<td><?php echo $row->product_id; ?></td>
 			<td><?php echo $row->name; ?></td>
@@ -41,4 +40,4 @@ weljotl;skjf
 			<td><a href="<?php print_r($url->getUrl('delete','product',['id'=>$row->product_id])) ;  ?>">Delete</td>
 		</tr>
 	<?php endforeach; ?>
-</table>
+</table> -->

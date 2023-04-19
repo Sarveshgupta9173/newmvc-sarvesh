@@ -11,7 +11,7 @@ class Block_Customer_Edit extends Block_Core_Template
 
 	public function getCollection()
 	{
-		$customers = Ccc::getRegistry('customers');
+		$customers = Ccc::getRegistry('customer');
 		$this->setData($customers);
 		return $this;
 	}
