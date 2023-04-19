@@ -48,6 +48,15 @@ class Ccc extends Controller_Core_Action
 		}
 		return null;
 	}
+
+	public static function getBaseDir($subDir = Null)
+	{
+		$dir = getcwd();
+		if($subDir){
+			return $dir.$subDir;
+		}
+		return $dir;
+	}
 }
 Ccc::init();
 
