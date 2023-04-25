@@ -36,7 +36,7 @@ class Model_Core_View
 
 	public function render()
 	{
-		$url = new Model_Core_url();
+		$url = Ccc::getModel('Core_Url');
 		require "View".DS.$this->getTemplate();
 	}
 

@@ -1,7 +1,6 @@
 <?php
 
 $rows = $this->getCollection();
-
 ?>
 <div class="row p-3">
     <div class="col-10">
@@ -9,7 +8,7 @@ $rows = $this->getCollection();
     </div>
     <div class="col-2">
     	<?php foreach ($this->getButtons() as $key => $button) :?>
-        <a class="btn btn-primary" href="<?php echo $button['url'] ?>"><?php echo $button['title'] ?></a>
+        <a class="btn btn-primary" onclick="ajax.setUrl('<?php  echo $button['url'] ?>').call();" ><?php echo $button['title'] ?></a>
     	<?php endforeach; ?>
     </div>
 </div>
@@ -32,7 +31,7 @@ $rows = $this->getCollection();
         	<td><?php echo $this->getColumnValue($row, $key) ?></td>
         	<?php endforeach; ?>
         	<?php foreach ($this->getActions() as $key => $action) :?>
-        	<td><a href="<?php $method = $action['method']; echo $this->$method($row, $key) ?>"><?php echo $action['title'] ?></a></td>
+        	<td><a onclick="ajax.setUrl('<?php $method = $action['method']; echo $this->$method($row, $key) ?>').call()" class="btn btn-primary" ><?php echo $action['title'] ?></a></td>
         	<?php endforeach; ?>
         </tr>
         <?php endforeach; ?>

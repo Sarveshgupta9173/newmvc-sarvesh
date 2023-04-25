@@ -1,19 +1,19 @@
 <?php 
 $row = $this->getData();
 ?>
-      <form action="<?php echo $url->getUrl('save','shipping'); ?>" method="post">
          <table class="tc">
             <tr>
                <td> <h3> SAVE SHIPPING METHOD</h3></td>
                <td>
-                  <!-- <a href="<?php echo $url->getUrl('grid','shipping'); ?>" class="btn btn-danger">Cancel </a> -->
+                  <!-- <a href="<?php // echo $url->getUrl('grid','shipping'); ?>" class="btn btn-danger">Cancel </a> -->
                </td>
                <td>
-                  <button type="submit" class="btn btn-success ms-5">SAVE</button>
+                  <button type="button" class="btn btn-success ms-5" onclick="ajax.setUrl('<?php echo $this->getUrl('save','shipping')?>').setMethod('post').setForm('shipping').call()">SAVE</button>
                </td>
             </tr>
          </table>
-         <br>
+
+      <form action="" method="post" id="shipping">
          <table border="1" cellspacing="0"  class="table table-striped table-bordered ">
          <tr>
             <td class="tth"> Shipping method_id</td>
@@ -43,4 +43,4 @@ $row = $this->getData();
           </td>
        </tr>
     </table>
- </form>
+      </form>
