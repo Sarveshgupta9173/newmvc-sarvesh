@@ -66,7 +66,6 @@ class Model_Core_Table_Resource
 	}
 
 	public function insert($data){
-		// print_r($data);die;
 		date_default_timezone_set("Asia/Kolkata");
 		$createdAt = date("Y-m-d h:i:s");
 		
@@ -92,7 +91,6 @@ class Model_Core_Table_Resource
             $sql = $sql."`{$key}`='{$value}', ";
          }
         $sql = $sql."`updated_at`='{$updated_at}' WHERE `{$this->getPrimaryKey()}`='{$condition}'";
-        print_r($sql);
 		$adapter = $this->getAdapter()->update($sql);
 		return true;
 
