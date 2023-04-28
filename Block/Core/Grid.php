@@ -6,6 +6,7 @@ class Block_Core_Grid extends Block_Core_Template
 	protected $_actions = [];
 	protected $_buttons = [];
 	protected $_title = null;
+	protected $pager = null;
 	
 	function __construct()
 	{
@@ -14,6 +15,24 @@ class Block_Core_Grid extends Block_Core_Template
 		$this->_prepareColumns();
 		$this->_prepareActions();
 		$this->_prepareButtons();
+	}
+
+	public function setPager($pager)
+	{
+		$this->pager = $pager;
+		return $this;
+	}
+
+	public function getPager()
+	{
+		if($this->pager){
+		 return $this->pager;
+		}
+		$pager = new Model_Core_Pager();
+		$rpp = Ccc::getModel('Core_Request')->getParams('rpp',10);
+		$this->setPager($pager);
+		$pager->setRecordPerPage($rpp);
+		return $pager;
 	}
 
 	public function setColumns(array $columns)
@@ -101,6 +120,11 @@ class Block_Core_Grid extends Block_Core_Template
 	public function getMediaUrl($row, $key)
 	{
 		return $this->getUrl('grid','media',['id'=>$row->getId()]);
+	}
+
+	public function getPriceUrl($row, $key)
+	{
+		return $this->getUrl('grid','sprice',['id'=>$row->getId()]);
 	}
 
 	public function setButtons(array $buttons)

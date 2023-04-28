@@ -4,10 +4,27 @@ class Model_Core_View
 {
 	protected $data = [];
 	protected $template = null;
+	protected $pager = null;
 
 	public function __construct()
 	{
 		
+	}
+
+	public function setPager(Model_Core_Pager $pager)
+	{
+		$this->pager = $pager;
+	}
+
+	public function getPager()
+	{
+		if($this->pager){
+			return $this->pager;
+		}
+		$pager = new Model_Core_Pager();
+		$this->setPager($pager);
+		return $pager;
+
 	}
 
 	public function setData($data){

@@ -59,16 +59,31 @@ class Block_Product_Grid extends Block_Core_Grid
 			'title' => 'Add Product',
 			'url' => $this->getUrl('add')
 		]);
+		$this->addButton('import',[
+			'title' => 'Import',
+			'url' => $this->getUrl('import')
+		]);
+		$this->addButton('export',[
+			'title' => 'Export',
+			'url' => $this->getUrl('export')
+		]);
+
 
 		return parent::_prepareButtons();	
 	}
 
 	public function getCollection()
 	{
-		$sql = "SELECT * FROM `product`";
+		$pager = $this->getPager();
+		$sql = "SELECT COUNT(`product_id`) FROM `product`ORDER BY `product_id` DESC";
+		$total = Ccc::getModel('Core_Adapter')->fetchOne($sql);
+		$pager->setTotalRecords($total)->calculate();
+
+		$sql = "SELECT * FROM `product` LIMIT $pager->startLimit,$pager->recordPerPage";
 		$products = Ccc::getModel('Product')->fetchAll($sql);
 		return $products;
 	}
+
 }
 
 ?>

@@ -2,15 +2,22 @@
 
 class Controller_Vendor extends Controller_Core_Action
 {
+	public function indexAction()
+	{
+		$layout = $this->getLayout();
+		$index = $layout->createBlock('Core_Layout')->setTemplate('core/index.phtml');
+		$layout->getChild('content')->addChild('index',$index);
+		echo $layout->toHtml();
+	}
 
 	public function addAction(){
 		$vendor = Ccc::getModel('Vendor');
 		Ccc::register('vendor',$vendor);
 
 		$layout = $this->getLayout();
-		$edit = $layout->createBlock('Vendor_Edit');
-		$layout->getChild('content')->addChild('edit',$edit);
-		$layout->render();
+		$edit = $layout->createBlock('Vendor_Edit')->toHtml();
+		echo json_encode(['html'=>$edit,'element'=>'content-html']);
+		@header('Content-Type:application/json');
 	}
 
 	public function editAction(){
@@ -23,21 +30,17 @@ class Controller_Vendor extends Controller_Core_Action
 		Ccc::register('vendor',$data);
 
 		$layout = $this->getLayout();
-		$edit = $layout->createBlock('Vendor_Edit');
-		$layout->getChild('content')->addChild('edit',$edit);
-		$layout->render();
+		$edit = $layout->createBlock('Vendor_Edit')->toHtml();
+		echo json_encode(['html'=>$edit,'element'=>'content-html']);
+		@header('Content-Type:application/json');
 	}
 
 	public function gridAction(){
-
-		$sql = "SELECT * FROM `vendor` INNER JOIN `vendor_address` ON `vendor`.`vendor_id` = `vendor_address`.`vendor_id`";
-		$vendors = Ccc::getModel('Vendor')->fetchAll($sql);
-		Ccc::register('vendors',$vendors);
 		
 		$layout = $this->getLayout();
-		$grid = $layout->createBlock('Vendor_Grid');
-		$layout->getChild('content')->addChild('grid',$grid);
-		$layout->render();
+		$grid = $layout->createBlock('Vendor_Grid')->toHtml();
+		echo json_encode(['html'=>$grid,'element'=>'content-html']);
+		@header('Content-Type:application/json');
 	}
 
 	public function insertAction(){

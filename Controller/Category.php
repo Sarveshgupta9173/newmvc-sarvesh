@@ -1,15 +1,33 @@
 <?php 
 
 class Controller_Category extends Controller_Core_Action
-{	
+{
+
+	public function indexAction()
+	{
+		$layout = $this->getLayout();
+		$index = $layout->createBlock('Core_Layout')->setTemplate('core/index.phtml');
+		$layout->getChild('content')->addChild('index',$index);
+		echo $layout->toHtml();
+	}
+
+	public function gridAction(){
+		
+		$layout = $this->getLayout();
+		$grid = $layout->createBlock('Category_Grid')->toHtml();
+		echo json_encode(['html'=>$grid,'element'=>'content-html']);
+		@header('Content-Type:application/json');
+
+	}
+	
 	public function addAction(){
 		$category = Ccc::getModel('Category');
 		Ccc::register('category',$category);
 
 		$layout = $this->getLayout();
-		$edit = $layout->createBlock('Category_Edit');
-		$layout->getChild('content')->addChild('edit',$edit);
-		$layout->render();
+		$edit = $layout->createBlock('Category_Edit')->toHtml();
+		echo json_encode(['html'=>$edit,'element'=>'content-html']);
+		@header('Content-Type:application/json');
 	}
 
 	public function editAction(){
@@ -21,47 +39,10 @@ class Controller_Category extends Controller_Core_Action
 		Ccc::register('category',$data);
 
 		$layout = $this->getLayout();
-		$edit = $layout->createBlock('Category_Edit');
-		$layout->getChild('content')->addChild('edit',$edit);
-		$layout->render();
+		$edit = $layout->createBlock('Category_Edit')->toHtml();
+		echo json_encode(['html'=>$edit,'element'=>'content-html']);
+		@header('Content-Type:application/json');
 		
-	}
-
-	public function gridAction(){
-		
-		$sql = "SELECT * FROM `category`";
-		$category = Ccc::getModel('Category')->fetchAll($sql);
-		Ccc::register('category',$category);
-
-		$layout = $this->getLayout();
-		$grid = $layout->createBlock('Category_Grid');
-		$layout->getChild('content')->addChild('grid',$grid);
-		$layout->render();
-
-	}
-
-	public function insertAction(){
-
-		try {
-			
-			$message = Ccc::getModel('Core_Message');
-			$request = $this->getRequest();
-
-			$request->isPost();
-			$category = $request->getPost("category");
-
-			$this->getModelRow()->data = $category;
-			$this->getModelRow()->save();
-
-			$message->addMessage('category inserted  successfully',Model_Core_Message::SUCCESS);
-			$message->addMessage('category inserted  successfully',Model_Core_Message::SUCCESS);
-
-		} catch (Exception $e) {
-			
-			$message->addMessage('action not performed',Model_Core_Message::FAILURE);
-
-		}
-		$this->redirect('grid','category',null,true);
 	}
 
 	public function saveAction()
@@ -92,34 +73,11 @@ class Controller_Category extends Controller_Core_Action
 		} catch (Exception $e) {
 			$message->addMessage('action not performed',Model_Core_Message::FAILURE);
 		}
-		$this->redirect('grid','category',null,true);
+		$layout = $this->getLayout();
+		$grid = $layout->createBlock('Category_Grid')->toHtml();
+		echo json_encode(['html'=>$grid,'element'=>'content-html']);
+		@header('Content-Type:application/json');
 
-	}
-
-	public function updateAction(){
-
-		try {
-			$message = Ccc::getModel('Core_Message');
-
-			$request = $this->getRequest();
-
-			$request->isPost();
-			$id = $request->getParams("id");
-			$category = $request->getPost("category");
-		
-			$this->getModelRow()->data = $category;
-			$this->getModelRow()->save();
-
-			$message->addMessage('action performeed successfully',Model_Core_Message::SUCCESS);
-
-		} catch (Exception $e) {
-			
-			$message->addMessage('task not performed',Model_Core_Message::FAILURE);
-
-		}
-
-		$this->redirect('grid','category',null,true);
-		
 	}
 
 	public function deleteAction(){
@@ -139,7 +97,10 @@ class Controller_Category extends Controller_Core_Action
 
 		}
 		
-		$this->redirect('grid','category',null,true);
+		$layout = $this->getLayout();
+		$grid = $layout->createBlock('Category_Grid')->toHtml();
+		echo json_encode(['html'=>$grid,'element'=>'content-html']);
+		@header('Content-Type:application/json');
 
 	}
 

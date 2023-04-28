@@ -2,13 +2,13 @@
 $row = $this->getData();
 
 ?>
-      <form action="<?php echo $url->getUrl('update'); ?>" method="post">
+      <form action="" method="post" id="customer">
          <table class="tc">
             <tr>
                <td class="heading"> EDIT CUSTOMER</td>
               
                <td>
-                  <button type="submit" class="btn btn-success ms-5">UPDATE</button>
+                  <button type="button" class="btn btn-success ms-5" onclick="ajax.setUrl('<?php echo $url->getUrl('update') ?>').setForm('customer').call()">SAVE</button>
                </td>
             </tr>
          </table>

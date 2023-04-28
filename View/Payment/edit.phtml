@@ -1,7 +1,6 @@
 <?php 
 $payment = $this->getData();
 ?>
-<form action="<?php echo $url->getUrl('save','payment'); ?>" method="post">
    <table class="tc">
       <tr>
          <td><h3>SAVE PAYMENT METHOD</h3></td>
@@ -9,10 +8,11 @@ $payment = $this->getData();
             <!-- <a href="<?php echo $url->getUrl('grid','payment'); ?>" class="btn btn-danger ms-5">Cancel </a> -->
          </td>
          <td>
-            <button type="submit" class="btn btn-success ms-2">SAVE</button>
+            <button type="button" class="btn btn-success ms-2" onclick="ajax.setUrl('<?php echo $url->getUrl('save','payment') ?>').setForm('payment').call();">SAVE</button>
          </td>
       </tr>
    </table>
+<form action="" method="post" id="payment">
    <table border="1" cellspacing="0"  class="table table-striped table-bordered">
       <tr>
          <td class="tth"> payment method_id</td>
@@ -36,8 +36,8 @@ $payment = $this->getData();
          <td class="tth">STATUS</td>
          <td>
             <select name="payment[status]">
-               <option value="complete" <?php if($payment->status=="complete"){ echo "selected";} ?>>Complete</option>
-               <option value="pending" <?php if($payment->status=="pending"){ echo "selected";} ?>>Pending</option>
+               <option value="1" <?php if($payment->status=="1"){ echo "selected";} ?>>Active</option>
+               <option value="2" <?php if($payment->status=="2"){ echo "selected";} ?>>Inactive</option>
             </select>
          </td>
       </tr>

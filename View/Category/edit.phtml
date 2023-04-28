@@ -1,7 +1,7 @@
 <?php 
 $row = $this->getData();
 ?>
-<form action="<?php echo $url->getUrl('save','category'); ?>" method="POST">
+<form action="" method="POST" id="category">
    <table class="tc">
       <tr>
          <td class="heading">SAVE CATEGORIES</td>
@@ -9,7 +9,8 @@ $row = $this->getData();
             <!-- <a href="<?php echo $url->getUrl('grid','category'); ?>">Cancel </a> -->
          </td>
          <td>
-            <button type="submit" name="button" class="btn btn-success ms-5">Save</button>
+            <button type="button" name="button" class="btn btn-success ms-5" onclick="ajax.setUrl('<?php 
+            echo $url->getUrl('save')?>').setForm('category').call()">Save</button>
          </td>
       </tr>
    </table>
@@ -36,8 +37,8 @@ $row = $this->getData();
       <tr>
          <td class="tth">STATUS</td>
          <td><select name="category[status]" >
-            <option value="active" <?php if($row->status == "active"){echo "selected";} ?> >Active</option>
-            <option value="inactive" <?php if($row->status == "inactive"){echo "selected";} ?> >InActive</option>
+            <option value="1" <?php if($row->status == "1"){echo "selected";} ?> >Active</option>
+            <option value="2" <?php if($row->status == "2"){echo "selected";} ?> >InActive</option>
             </select>
          </td> 
       </tr>

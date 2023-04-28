@@ -58,6 +58,12 @@ class Block_Shipping_Grid extends Block_Core_Grid
 
 	public function getCollection()
 	{
+		$sql = "SELECT COUNT(`shipping_id`) FROM `shipping` ORDER BY `shipping_id` DESC";
+		$total = Ccc::getModel('Core_Adapter')->fetchOne($sql);
+		$this->getPager()->setTotalRecords($total)->calculate();
+
+		$sql = "SELECT * FROM `shipping` ORDER BY `shipping_id` DESC LIMIT {$this->getPager()->startLimit},{$this->getPager()->recordPerPage}";
+
 		$sql = "SELECT * FROM `shipping`";
 		$shippings = Ccc::getModel('Shipping')->fetchAll($sql);
 		return $shippings;

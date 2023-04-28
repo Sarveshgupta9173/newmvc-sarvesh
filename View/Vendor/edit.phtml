@@ -2,7 +2,7 @@
 $result = $this->getData();
 
 ?>
-   <form action="<?php echo $url->getUrl('update','vendor'); ?>" method="post">
+   <form action="" method="post" id="vendor">
       <table class="tc">
          <tr>
             <td class="heading">SAVE VENDOR</td>
@@ -10,7 +10,7 @@ $result = $this->getData();
                <!-- <a href="<?php echo $url->getUrl('grid','vendor'); ?>">Cancel </a> -->
             </td>
             <td>
-               <button type="submit" class="btn btn-success ms-5">SAVE</button>
+               <button type="button" class="btn btn-success ms-5" onclick="ajax.setUrl('<?php echo $url->getUrl('update') ?>').setForm('vendor').call()">SAVE</button>
             </td>
          </tr>
       </table>

@@ -51,7 +51,6 @@ class Model_Core_Adapter{
 		 return $result->fetch_all(MYSQLI_ASSOC);
 	}
 		
-
 	public function fetchPairs($sql)
 	{	
 		$result = $this->query($sql);
@@ -62,6 +61,17 @@ class Model_Core_Adapter{
 			$column2 = array_fill(0, count($column1), null);
 		}
 		return array_combine($column1, $column2);
+	}
+
+	public function fetchOne($sql)
+	{
+		$connect = $this->connect();
+		$result = $connect->query($sql);
+		if($result->num_rows == 0){
+			return null;
+		}
+		$row = $result->fetch_array();
+		return (array_key_exists(0,$row)?$row[0]:null);
 	}
 }
 ?>
