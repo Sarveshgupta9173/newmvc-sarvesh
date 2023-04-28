@@ -27,8 +27,6 @@ class Block_Core_Template extends Model_Core_View
 		return $layout;
 	}
 
-
-
 	public function setChildren(array $children)
 	{
 		$this->children = $children;

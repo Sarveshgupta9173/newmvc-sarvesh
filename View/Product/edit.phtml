@@ -2,7 +2,6 @@
 $result = $this->getCollection()->getData();
 ?>
 
-<form action="<?php print_r($url->getUrl('save','product')); ?>" method="POST">
 	<table class="tc">
 		<tr>
 			<td class="heading"> SAVE PRODUCT </td>
@@ -10,40 +9,41 @@ $result = $this->getCollection()->getData();
 				<!-- <a href="<?php print_r($url->getUrl('grid','product')); ?>"> Cancel </a> -->
 			</td>
 			<td>
-				<button type="submit" class="btn btn-success ms-5">SAVE</button>
+				<button type="button" class="btn btn-success ms-5" onclick="ajax.setUrl('<?php echo $url->getUrl('save') ?>').setForm('product').call()">SAVE</button>
 			</td>
 		</tr>
 	</table>
 	<?php ?>
+<form action="" method="POST" id="product">
 	<table border="1" cellspacing="0"  class="table table-bordered">
 			<tr>
 				<td class="tth">product id</td>
 				<td>
-					<input type="number" name="product[product_id]" value="<?php echo $result->product_id;  ?>">
+					<input type="number" name="product[product_id]" value="<?php echo $result->product_id;  ?>" placeholder="Product Id">
 				</td>
 			</tr>
 			<tr>
 				<td class="tth">NAME</td>
 				<td>
-					<input type="text" name="product[name]" value="<?php echo $result->name;  ?>">
+					<input type="text" name="product[name]" value="<?php echo $result->name;  ?>" placeholder="Name">
 				</td>
 			</tr>
 			<tr>
 				<td class="tth">COST</td>
 				<td>
-					<input type="number" name="product[cost]" value="<?php echo $result->cost;  ?>">
+					<input type="number" name="product[cost]" value="<?php echo $result->cost;  ?>" placeholder=" Cost">
 				</td>
 			</tr>
 			<tr>
 				<td class="tth">PRICE</td>
 				<td>
-					<input type="number" name="product[price]" value="<?php echo $result->price;  ?>">	
+					<input type="number" name="product[price]" value="<?php echo $result->price;  ?>" placeholder="Price">	
 				</td>
 			</tr>
 			<tr>
 				<td class="tth">QUANTITY</td>
 				<td>
-					<input type="number" name="product[quantity]" value="<?php echo $result->quantity;  ?>">
+					<input type="number" name="product[quantity]" value="<?php echo $result->quantity;  ?>" placeholder="Quantity">
 				</td>
 			</tr>
 				

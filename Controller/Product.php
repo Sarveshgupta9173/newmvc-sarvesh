@@ -2,14 +2,59 @@
 
 class Controller_Product extends Controller_Core_Action
 {
+
+	public function importAction()
+	{
+
+		$layout = $this->getLayout();
+		$import = $layout->createBlock('Product_Import')->toHtml();
+		echo json_encode(['html'=>$import,'element'=>'content-html']);
+		@header('Content-Type:application/json');
+	}
+
+	public function getAction()
+	{
+		echo "<pre>";
+		$file = Ccc::getModel('Core_File_Upload');
+		print_r($file);
+
+
+
+		die;
+		$path = $_FILES['file']['full_path'];
+		$tmp_name = $_FILES['file']['tmp_name'];
+		$dir = 'view/media/img_list/'.$path;
+		move_uploaded_file($tmp_name, $dir);
+		// print_r($path);die;
+		$handle = fopen($path, "r");
+		$data = fgetcsv($handle);
+		while($data !== false){
+			$array[]= $data;
+		}
+		fclose($file);
+		print_r($array);
+
+		$this->redirect('index','product',null,true);
+		
+
+	}
+
+	public function indexAction()
+	{
+		$layout = $this->getLayout();
+		$index = $layout->createBlock('Core_Layout')->setTemplate('core/index.phtml');
+		$layout->getChild('content')->addChild('index',$index);
+		echo $layout->toHtml();
+	}
+
 	public function addAction(){
 		$products = Ccc::getModel('Product');
 		Ccc::register('products',$products);
 
 		$layout = $this->getLayout();
-		$edit = $layout->createBlock('Product_Edit');
-		$layout->getChild('content')->addChild('edit',$edit);
-		$layout->render();
+		$edit = $layout->createBlock('Product_Edit')->toHtml();
+		echo json_encode(['html'=>$edit,'element'=>'content-html']);
+		@header('Content-Type:application/json');
 	}
 
 	public function editAction(){
@@ -19,46 +64,18 @@ class Controller_Product extends Controller_Core_Action
 		Ccc::register('products',$products);
 		$edit = new Block_Product_Edit();
 		$layout = $this->getLayout();
-		$edit = $layout->createBlock('Product_Edit');
-		$layout->getChild('content')->addChild('edit',$edit);
-		$layout->render();
+		$edit = $layout->createBlock('Product_Edit')->toHtml();
+		echo json_encode(['html'=>$edit,'element'=>'content-html']);
+		@header('Content-Type:application/json');
 	}
 
-	public function gridAction(){
-		$sql = "SELECT * FROM `product`";
-		$products = Ccc::getModel('Product')->fetchAll($sql);
-		if(!$products){
-			throw new Exception("No data found", 1);
-		}
+	public function gridAction(){		
 		
 		$layout = $this->getLayout();
-		$grid = $layout->createBlock('Product_Grid');
-		$layout->getChild('content')->addChild('grid',$grid);
-		$layout->render();
+		$grid = $layout->createBlock('Product_Grid')->toHtml();
+		echo json_encode(['html'=>$grid,'element'=>'content-html']);
+		@header('Content-Type:application/json');
 	
-	}
-
-	public function insertAction(){
-
-
-		try {
-
-			$message = Ccc::getModel('Core_Message');
-			$request = $this->getRequest();
-			$request->isPost();
-			$product = $request->getPost("product");
-
-			$this->getResourceClass()->products = $product;  //set magic method
-			$this->getResourceClass()->save();
-		
-			$message->addMessage('Product Inserted successfully',Model_Core_Message::SUCCESS);
-
-		} catch (Exception $e) {
-
-			$message->addMessage(' Product not inserted',Model_Core_Message::FAILURE);
-		}
-
-		$this->redirect('grid','product',null,true);
 	}
 
 	public function saveAction()
@@ -90,35 +107,10 @@ class Controller_Product extends Controller_Core_Action
 			$message->addMessage('Insert/Update not Success ',Model_Core_Message::FAILURE);
 			
 		}
-		$this->redirect('grid','product',null,true);
-	}
-
-	public function updateAction(){
-
-		try {
-			
-			$message = new Model_Core_Message();
-			$request = $this->getRequest();
-
-			$request->isPost();
-			$product = $request->getPost("product");
-			// print_r($product);
-			
-			if(!$product){
-				echo "data not present";
-			}
-			// $productmodel = new Model_Product();
-			$this->getModelRow()->products = $product;   //set magic method to set an array in object
-			// print_r($product);
-			$this->getModelRow()->save();
-		
-			$message->addMessage('Updated successfully',Model_Core_Message::SUCCESS);
-		
-		} catch (Exception $e) {
-			$message->addMessage('Updation not performed',Model_Core_Message::FAILURE);
-			
-		}
-		$this->redirect('grid','product',null,true);
+		$layout = $this->getLayout();
+		$grid = $layout->createBlock('Product_Grid')->toHtml();
+		echo json_encode(['html'=>$grid,'element'=>'content-html']);
+		@header('Content-Type:application/json');
 	}
 
 	public function deleteAction(){
@@ -138,7 +130,10 @@ class Controller_Product extends Controller_Core_Action
 			$message->addMessage('Not deleted ',Model_Core_Message::FAILURE);
 		}
 
-		$this->redirect('grid','product',null,true);
+		$layout = $this->getLayout();
+		$grid = $layout->createBlock('Product_Grid')->toHtml();
+		echo json_encode(['html'=>$grid,'element'=>'content-html']);
+		@header('Content-Type:application/json');
 
 	}
 }

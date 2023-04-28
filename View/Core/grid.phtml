@@ -1,12 +1,13 @@
 <?php
 
 $rows = $this->getCollection();
+
 ?>
 <div class="row p-3">
     <div class="col-10">
         <h2><?php echo $this->getTitle() ?></h2>
     </div>
-    <div class="col-2">
+    <div class="">
     	<?php foreach ($this->getButtons() as $key => $button) :?>
         <a class="btn btn-primary" onclick="ajax.setUrl('<?php  echo $button['url'] ?>').call();" ><?php echo $button['title'] ?></a>
     	<?php endforeach; ?>
@@ -24,7 +25,7 @@ $rows = $this->getCollection();
         </tr>
     </thead>
     <tbody>
-    <?php if($rows->count()>0): ?>
+    <?php if($rows->count() > 0): ?>
         <?php foreach($rows->getData() as $row): ?>
         <tr>
             <?php foreach ($this->getColumns() as $key => $column) :?>
@@ -42,3 +43,46 @@ $rows = $this->getCollection();
     <?php endif; ?>
     </tbody>
 </table>
+<?php $pager = $this->getPager(); ?>
+    
+    <select onchange="changeGrid(this.value)">
+        <?php foreach( $pager->recordPerPageOptions as $values): ?>
+            <?php $selected = ($pager->recordPerPage == $values)?'selected':'';  ?>
+        <option value="<?php echo $values; ?>" <?php echo $selected; ?> ><?php echo $values; ?></option>
+        <?php endforeach; ?>
+    </select>
+    <script type="text/javascript">
+        function changeGrid(value) {
+            ajax.setUrl('<?php echo $url->getUrl(null,null,['p'=>1],true) ?>&rpp='+value).call();s
+        }
+    </script>
+
+    <ul class="pagination">
+
+        <li class="ms-5 " > <a class="btn btn-primary" id="start" onclick="ajax.setUrl('<?php echo $url->getUrl(null,null,['p'=>$pager->start],true) ?>').call()">START</a></li>
+
+        <li class="ms-5 "> <a class="btn btn-primary" id="prev" onclick="ajax.setUrl('<?php echo $url->getUrl(null,null,['p'=>$pager->previous],true); ?>').call()">PREV</a></li>
+
+        <li class="ms-5 "> <a class="btn btn-primary" onclick="ajax.setUrl('<?php echo $url->getUrl(null,null,['p'=>$pager->currentPage],true); ?>').call()"><?php echo $pager->currentPage; ?></a></li>
+
+        <li class="ms-5 "> <a class="btn btn-primary"  id="next" onclick="ajax.setUrl('<?php echo $url->getUrl(null,null,['p'=>$pager->next],true); ?>').call()">NEXT</a></li>
+
+        <li class="ms-5 "> <a class="btn btn-primary" id="end" onclick="ajax.setUrl('<?php echo $url->getUrl(null,null,['p'=>$pager->end],true); ?>').call()">END</a></li>
+    </ul>
+
+    <p>showing <strong> <?php echo $pager->currentPage; ?></strong> of <strong> <?php echo $pager->numberOfPages; ?></strong> Pages</p>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            if(<?php echo $pager->start ?> === 0){
+            $('#start').addClass('disabled');
+            $('#prev').addClass('disabled');
+            }
+
+            if(<?php echo $pager->getCurrentPage(); ?> === <?php echo $pager->numberOfPages; ?>){
+            $('#end').addClass('disabled');
+            $('#next').addClass('disabled');
+            }
+        
+        });
+    </script>
