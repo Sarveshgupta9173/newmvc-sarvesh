@@ -5,36 +5,22 @@ class Controller_Product extends Controller_Core_Action
 
 	public function importAction()
 	{
-
 		$layout = $this->getLayout();
 		$import = $layout->createBlock('Product_Import')->toHtml();
 		echo json_encode(['html'=>$import,'element'=>'content-html']);
 		@header('Content-Type:application/json');
 	}
 
-	public function getAction()
+	public function uploadAction()
 	{
 		echo "<pre>";
-		$file = Ccc::getModel('Core_File_Upload');
-		print_r($file);
+		$upload = new Model_Core_File_Upload();
+		$upload->setPath('product')->save('file');
 
-
-
-		die;
-		$path = $_FILES['file']['full_path'];
-		$tmp_name = $_FILES['file']['tmp_name'];
-		$dir = 'view/media/img_list/'.$path;
-		move_uploaded_file($tmp_name, $dir);
-		// print_r($path);die;
-		$handle = fopen($path, "r");
-		$data = fgetcsv($handle);
-		while($data !== false){
-			$array[]= $data;
-		}
-		fclose($file);
-		print_r($array);
-
-		$this->redirect('index','product',null,true);
+		$csv = new Model_Core_File_Csv();
+		$csv->setPath('product')->setFileName('product.csv')->read();
+		print_r($csv->getRows());
+		
 		
 
 	}

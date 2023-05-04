@@ -6,9 +6,9 @@
 	<title>Import</title>
 </head>
 <body>
-<form action="<?php echo $url->getUrl('get','product'); ?>" method="post" enctype="multipart/form-data">
+<form action="<?php echo $url->getUrl('upload','product'); ?>" method="post" enctype="multipart/form-data">
 	<h3>Select File to Import:</h3>
-	Select File to Upload :<input type="file" name="file">
+	Select File to Upload :<input type="file" name="file" >
 	<button type="submit">Uploads </button>
 </form>
 </body>

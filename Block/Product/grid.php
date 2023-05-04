@@ -22,6 +22,9 @@ class Block_Product_Grid extends Block_Core_Grid
 		$this->addColumn('price',[
 			'title' => 'Price'
 		]);
+		$this->addColumn('sku',[
+			'title' => 'SKU'
+		]);
 		$this->addColumn('quantity',[
 			'title' => 'Quantity'
 		]);
